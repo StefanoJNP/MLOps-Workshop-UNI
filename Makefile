@@ -12,7 +12,7 @@
 #   make run       → Ejecutar el contenedor Docker
 # ============================================================
 
-.PHONY: setup train predict api docker run clean help
+.PHONY: setup train predict api docker run clean clean-class reset-env help
 
 # Variables
 PYTHON = python
@@ -61,6 +61,16 @@ clean:  ## Eliminar archivos generados (modelos, cache, etc.)
 	rm -rf __pycache__ src/__pycache__
 	rm -rf .ipynb_checkpoints notebooks/.ipynb_checkpoints
 	@echo "Archivos generados eliminados."
+
+clean-class:  ## Reset para clase: limpia artefactos y deja solo plantillas base
+	rm -rf .dvc .dvc_remote
+	find models -type f ! -name ".gitkeep" -delete
+	rm -f notebooks/02_training.ipynb notebooks/03_training_mlflow.ipynb
+	find reports -mindepth 1 ! -path "reports/figures" ! -path "reports/figures/.gitkeep" -delete
+	rm -rf venv .venv
+	@echo "Entorno reiniciado para clase (DVC, modelos, notebooks completos, reportes y venv)."
+
+reset-env: clean-class  ## Alias de clean-class
 
 # --- Ayuda ---
 

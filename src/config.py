@@ -56,7 +56,7 @@ FEATURES: list[str] = [
 TARGET: str = "concrete_compressive_strength"
 
 # ---------------------------------------------------------------------------
-# MLflow / Databricks
+# MLflow
 # ---------------------------------------------------------------------------
-MLFLOW_TRACKING_URI: str = "databricks"
-MLFLOW_EXPERIMENT: str = "/Users/nalayo@itmeet.org/concrete-strength"
+MLFLOW_TRACKING_URI: str = "http://127.0.0.1:5000"
+MLFLOW_EXPERIMENT: str = "mlops-workshop-uni"
